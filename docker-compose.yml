@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:11.3-alpine
+    restart: always
+    container_name: le_tech_storage
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=le_tech
+      - POSTGRES_DB=le_tech
+      - POSTGRES_PASSWORD=le_tech_dev
+
+volumes:
+  postgres_data:
