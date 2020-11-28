@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   db:
-    image: postgres:11.3-alpine
+    image: postgres:12.5-alpine
     restart: always
     container_name: le_tech_storage
     volumes:
