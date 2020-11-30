@@ -13,8 +13,12 @@ data class Companies(
         val id: Long? = null,
         val name: String,
         val branche: String,
+        val street :String,
+        val plz :String,
+        val city :String,
+        val phonenumber :String,
         val website: String,
-        val email: String,
-        @OneToMany(mappedBy = "companies")
-        val location : List<Location> = arrayListOf<Location>()
+        val email: String
+
+
 )

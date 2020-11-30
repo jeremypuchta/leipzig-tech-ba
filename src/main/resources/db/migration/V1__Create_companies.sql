@@ -1,21 +1,12 @@
 CREATE TABLE companies(
   ID SERIAL PRIMARY KEY NOT NULL,
-  NAME       VARCHAR(255),
+  NAME       TEXT,
   BRANCHE TEXT,
+  STREET TEXT,
+  PLZ VARCHAR(10),
+  CITY TEXT,
+  PHONENUMBER TEXT,
   WEBSITE TEXT ,
   EMAIL TEXT
 );
-create table location (
-        ID  Serial primary key not null,
-        CITY TEXT,
-        NUMMER TEXT,
-        PLZ TEXT,
-        STREET TEXT,
-        COMPANIES_ID INT
-
-    );
-
-alter table location
-       add constraint FK29w2secbceb7nh4jxco4mhscp
-       foreign key (COMPANIES_ID)
-       references companies(ID)
+CREATE EXTENSION fuzzystrmatch SCHEMA public;
