@@ -12,7 +12,7 @@ services:
     environment:
       - POSTGRES_USER=le_tech
       - POSTGRES_DB=le_tech
-      - POSTGRES_PASSWORD=le_tech_dev
+      - POSTGRES_PASSWORD=ddk0Re!!wIjpGAPzfa.XrQ
 
 volumes:
   postgres_data:

@@ -1,1 +1,0 @@
-insert into companies(name, branche,website,email,city,plz,phonenumber,street) values ('Microsoft','Tech','web.de','Frings@web.de','Leipzig','04155','01714353024','Hauptstraße 5');
