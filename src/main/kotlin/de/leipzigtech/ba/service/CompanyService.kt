@@ -1,23 +1,20 @@
 package de.leipzigtech.ba.service
 
-import de.leipzigtech.ba.model.Companies
-import de.leipzigtech.ba.repository.Companies_Repository
+import de.leipzigtech.ba.model.Company
+import de.leipzigtech.ba.repository.CompanyRepository
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.springframework.data.domain.Sort
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.PathVariable
 import com.google.gson.*
-import com.google.gson.JsonObject
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.json
 
 @Service
-class CompaniesService(private val comRepository: Companies_Repository) {
+class CompanyService(private val comRepository: CompanyRepository) {
 
 
-    fun getallCompanies(sort:String,orderBy:String): ResponseEntity<List<Companies>> {
+    fun getallCompanies(sort:String,orderBy:String): ResponseEntity<List<Company>> {
 
         if (sort == "ASC"){
 
@@ -34,7 +31,7 @@ class CompaniesService(private val comRepository: Companies_Repository) {
 
     }
 
-    fun getCompaniesbyName_fuzzy(name:String,fuzzy:Boolean): ResponseEntity<List<Companies>> {
+    fun getCompaniesbyName_fuzzy(name:String,fuzzy:Boolean): ResponseEntity<List<Company>> {
 
 
         if(fuzzy){
@@ -60,15 +57,15 @@ class CompaniesService(private val comRepository: Companies_Repository) {
             }?.orElse(ResponseEntity.notFound().build())!!
 
 
-    fun addCompanies(companies: Companies): ResponseEntity<Companies> =
+    fun addCompanies(companies: Company): ResponseEntity<Company> =
             ResponseEntity.ok(comRepository.save(companies))
 
-    fun getCompanieById(comId: Long): ResponseEntity<Companies> =
+    fun getCompanieById(comId: Long): ResponseEntity<Company> =
             comRepository.findById(comId).map { companies ->
                 ResponseEntity.ok(companies)
             }.orElse(ResponseEntity.notFound().build())
 
-    fun getLongLat(com:Companies) {
+    fun getLongLat(com:Company) {
 
         val okHttpClient = OkHttpClient()
         val request = Request.Builder()

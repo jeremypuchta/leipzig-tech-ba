@@ -1,8 +1,8 @@
 package de.leipzigtech.ba
 
-import de.leipzigtech.ba.model.Companies
-import de.leipzigtech.ba.repository.Companies_Repository
-import de.leipzigtech.ba.service.CompaniesService
+import de.leipzigtech.ba.model.Company
+import de.leipzigtech.ba.repository.CompanyRepository
+import de.leipzigtech.ba.service.CompanyService
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.http.ResponseEntity
@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestBody
 
 
 @RestController
-class TaskResource(private val comService: CompaniesService) {
+class CompanyController(private val comService: CompanyService) {
 
     @Autowired
-    private val comRepository: Companies_Repository? = null
+    private val comRepository: CompanyRepository? = null
 
 
     @GetMapping("/companies/{id}")
-    fun getCompaniesById(@PathVariable(value="id") id:Long): ResponseEntity<Companies> {
+    fun getCompaniesById(@PathVariable(value="id") id:Long): ResponseEntity<Company> {
 
        return comService.getCompanieById(id)
     }
     @GetMapping("/companies")
-    fun getCompanies(@RequestParam(value="name",required = false) name: String?,@RequestParam(value="fuzzy",required = false,defaultValue = "true")fuzzy:Boolean,@RequestParam(value= "orderBy",required = false,defaultValue = "name") orderBy: String,@RequestParam(value="sort",required = false,defaultValue = "ASC")sort:String): ResponseEntity<List<Companies>> {
+    fun getCompanies(@RequestParam(value="name",required = false) name: String?,@RequestParam(value="fuzzy",required = false,defaultValue = "true")fuzzy:Boolean,@RequestParam(value= "orderBy",required = false,defaultValue = "name") orderBy: String,@RequestParam(value="sort",required = false,defaultValue = "ASC")sort:String): ResponseEntity<List<Company>> {
 
         if (name != null) {
             if(!name.isBlank()) return name.let { comService.getCompaniesbyName_fuzzy(it,fuzzy) }
@@ -36,7 +36,7 @@ class TaskResource(private val comService: CompaniesService) {
     }
 
     @PostMapping("/companies")
-    fun addCompanies(@RequestBody com: Companies): ResponseEntity<Companies> {
+    fun addCompanies(@RequestBody com: Company): ResponseEntity<Company> {
 
         try {
             comService.getLongLat(com)
