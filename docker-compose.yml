@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   db:
-    image: postgres:12.5-alpine
+    image: leipzigtech
     restart: always
     container_name: le_tech_storage
     volumes:
@@ -13,6 +13,5 @@ services:
       - POSTGRES_USER=le_tech
       - POSTGRES_DB=le_tech
       - POSTGRES_PASSWORD=ddk0Re!!wIjpGAPzfa.XrQ
-
 volumes:
   postgres_data:
