@@ -18,6 +18,11 @@ class CompanyController(private val comService: CompanyService) {
     private val comRepository: CompanyRepository? = null
 
 
+    @GetMapping("/companies/ref")
+    fun getRef(): ResponseEntity<List<String>> {
+
+        return comService.getAllRef()
+    }
     @GetMapping("/companies/{id}")
     fun getCompaniesById(@PathVariable(value="id") id:Long): ResponseEntity<Company> {
 

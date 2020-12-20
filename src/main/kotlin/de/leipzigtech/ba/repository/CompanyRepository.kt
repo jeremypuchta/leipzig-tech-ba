@@ -14,7 +14,10 @@ interface CompanyRepository : JpaRepository<Company, Long> {
     @Query("SELECT *,LEVENSHTEIN(name,:name) FROM companies c Where LEVENSHTEIN(c.name,:name)< 4 ORDER BY LEVENSHTEIN(c.name,:name) ASC LIMIT 3 ", nativeQuery = true)
     fun findByName_fuzzy(@Param("name") name: kotlin.String): List<Company>
     fun findByNameOrderByNameAsc(name: kotlin.String):List<Company>
+    @Query("SELECT * From companies c ",nativeQuery = true)
+    fun getAllRef():List<Company>
     fun findByNameOrderByNameDesc(name: kotlin.String):List<Company>
+
 
 
 
