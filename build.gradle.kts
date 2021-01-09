@@ -38,6 +38,7 @@ dependencies {
 	implementation ("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.flywaydb:flyway-core")
 	implementation("com.squareup.okhttp3:okhttp:3.14.6")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-client:2.4.1")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
