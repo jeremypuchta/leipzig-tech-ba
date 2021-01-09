@@ -65,6 +65,17 @@ class CompanyService(private val comRepository: CompanyRepository) {
                 ResponseEntity.ok(companies)
             }.orElse(ResponseEntity.notFound().build())
 
+    fun getAllRef(): ResponseEntity<List<String>>{
+        val com = comRepository.getAllRef()
+
+        val list=mutableListOf<String>()
+        for (i in com){
+            list.add(i.ref)
+        }
+        return if(list.isNullOrEmpty()) ResponseEntity.notFound().build()
+        else ResponseEntity.ok(list)
+
+    }
     fun getLongLat(com:Company) {
 
         val okHttpClient = OkHttpClient()
