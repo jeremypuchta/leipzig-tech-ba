@@ -17,17 +17,19 @@ class CompanyController(private val comService: CompanyService) {
     @Autowired
     private val comRepository: CompanyRepository? = null
 
-
+    @CrossOrigin
     @GetMapping("/companies/ref")
     fun getRef(): ResponseEntity<List<String>> {
 
         return comService.getAllRef()
     }
+    @CrossOrigin
     @GetMapping("/companies/{id}")
     fun getCompaniesById(@PathVariable(value="id") id:Long): ResponseEntity<Company> {
 
        return comService.getCompanieById(id)
     }
+    @CrossOrigin
     @GetMapping("/companies")
     fun getCompanies(@RequestParam(value="name",required = false) name: String?,@RequestParam(value="fuzzy",required = false,defaultValue = "true")fuzzy:Boolean,@RequestParam(value= "orderBy",required = false,defaultValue = "name") orderBy: String,@RequestParam(value="sort",required = false,defaultValue = "ASC")sort:String): ResponseEntity<List<Company>> {
 
