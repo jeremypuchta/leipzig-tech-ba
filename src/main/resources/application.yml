@@ -53,3 +53,18 @@ spring:
               action: create
               create-source: metadata
               create-target: ./src/main/resources/db/migration/create.sql
+<<<<<<< HEAD
+=======
+  main:
+    banner-mode: 'off'
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: eb7dcb44c7f08deaf8ef
+            clientSecret: 494afbbf5501379c3880ab0ab86443668c3ecfc2
+            scope:
+              - user:email
+              - read:user
+>>>>>>> 5aa7592 (Add minor refactorings and change application.properties to .yml)
