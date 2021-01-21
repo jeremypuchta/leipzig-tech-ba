@@ -37,7 +37,9 @@ data class Company (
         @Column(name="LATITUDE")
         var latitude:Float,
         @Column(name="LONGITUDE")
-        var longitude:Float
+        var longitude:Float,
+        @Column(name="district")
+        var district:String?=""
 
 
 

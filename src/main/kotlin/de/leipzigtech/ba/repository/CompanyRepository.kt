@@ -11,8 +11,12 @@ import org.springframework.data.repository.query.Param
 interface CompanyRepository : JpaRepository<Company, Long> {
 
     //fuzzy_searching
-    @Query("SELECT *,LEVENSHTEIN(name,:name) FROM companies c Where LEVENSHTEIN(c.name,:name)< 4 ORDER BY LEVENSHTEIN(c.name,:name) ASC LIMIT 3 ", nativeQuery = true)
+    @Query("SELECT *,LEVENSHTEIN(name,:name) FROM companies c Where name LIKE  CONCAT('%',:name,'%')  ORDER BY LEVENSHTEIN(c.name,:name) ASC ", nativeQuery = true)
     fun findByName_fuzzy(@Param("name") name: kotlin.String): List<Company>
+
+    @Query("SELECT *,LEVENSHTEIN(name,:name) FROM companies c Where name ILIKE  CONCAT('%',:name,'%')  ORDER BY LEVENSHTEIN(c.name,:name) ASC ", nativeQuery = true)
+    fun findByName_case(@Param("name") name: kotlin.String): List<Company>
+
     fun findByNameOrderByNameAsc(name: kotlin.String):List<Company>
     @Query("SELECT * From companies c ",nativeQuery = true)
     fun getAllRef():List<Company>

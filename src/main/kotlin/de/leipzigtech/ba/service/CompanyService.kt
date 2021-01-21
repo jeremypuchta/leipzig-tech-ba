@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import com.google.gson.*
+import kotlin.system.exitProcess
 
 @Service
 class CompanyService(private val comRepository: CompanyRepository) {
@@ -31,21 +32,18 @@ class CompanyService(private val comRepository: CompanyRepository) {
 
     }
 
-    fun getCompaniesbyName_fuzzy(name:String,fuzzy:Boolean): ResponseEntity<List<Company>> {
+    fun getCompaniesbyName_case(name:String, case:Boolean): ResponseEntity<List<Company>> {
 
 
-        if(fuzzy){
+        if(case){
            val  com = comRepository.findByName_fuzzy(name)
-             return if(com.isNullOrEmpty()) ResponseEntity.notFound().build()
+             return if(com.isNullOrEmpty()) ResponseEntity.ok(com)
              else ResponseEntity.ok(com)
         }
 
-        /*
-        exact match name -> order by ->Name
-         */
-        val com = comRepository.findByNameOrderByNameAsc(name)
+        val com = comRepository.findByName_case(name)
 
-        return if(com.isNullOrEmpty()) ResponseEntity.notFound().build()
+        return if(com.isNullOrEmpty()) ResponseEntity.ok(com)
         else ResponseEntity.ok(com)
 
     }
@@ -93,6 +91,28 @@ class CompanyService(private val comRepository: CompanyRepository) {
 
         }else{
 
+            throw Exception()
+        }
+
+    }
+
+    fun getDistrict(com:Company) {
+
+        val okHttpClient = OkHttpClient()
+        val request = Request.Builder()
+                .url("https://www.postdirekt.de/plzserver/PlzAjaxServlet?nocache=1610556880371&format=json&plz_city=" + com.city + "&plz_plz="+com.plz+"&plz_city_clear=&plz_district=&finda=plz&plz_street=" +com.address+"&lang=de_DE ")
+                .build()
+        val response =okHttpClient.newCall(request).execute()
+
+        if(response.isSuccessful){
+
+
+            val obj = JsonParser.parseString(response.body()?.string()).asJsonObject["rows"].asJsonArray
+
+            com.district=obj.get(0).asJsonObject.get("district").asString
+
+
+        }else{
             throw Exception()
         }
 

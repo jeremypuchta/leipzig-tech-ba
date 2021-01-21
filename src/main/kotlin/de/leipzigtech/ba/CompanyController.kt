@@ -31,10 +31,10 @@ class CompanyController(private val comService: CompanyService) {
     }
     @CrossOrigin
     @GetMapping("/companies")
-    fun getCompanies(@RequestParam(value="name",required = false) name: String?,@RequestParam(value="fuzzy",required = false,defaultValue = "true")fuzzy:Boolean,@RequestParam(value= "orderBy",required = false,defaultValue = "name") orderBy: String,@RequestParam(value="sort",required = false,defaultValue = "ASC")sort:String): ResponseEntity<List<Company>> {
+    fun getCompanies(@RequestParam(value="name",required = false) name: String?,@RequestParam(value="case",required = false,defaultValue = "false")case:Boolean,@RequestParam(value= "orderBy",required = false,defaultValue = "name") orderBy: String,@RequestParam(value="sort",required = false,defaultValue = "ASC")sort:String): ResponseEntity<List<Company>> {
 
         if (name != null) {
-            if(!name.isBlank()) return name.let { comService.getCompaniesbyName_fuzzy(it,fuzzy) }
+            if(!name.isBlank()) return name.let { comService.getCompaniesbyName_case(it,case) }
         }
         return  comService.getallCompanies(sort,orderBy)
 
@@ -47,10 +47,11 @@ class CompanyController(private val comService: CompanyService) {
 
         try {
             comService.getLongLat(com)
+            comService.getDistrict(com)
         }catch (e:Exception){
+
             return ResponseEntity.badRequest().build()
         }
-
 
         return comService.addCompanies(com)
     }
