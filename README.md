@@ -26,11 +26,11 @@ Testing with DB
 #### Connecting with DB
 
 
-Make sure that you have free ports at 8080 and 5432.
-Registered ssh public key on database required.
+Make sure that you have free ports at 5432 (or 8080 for connecting with backend on localhost).
+Registered ssh public key on server required.
 
 
-* ssh -L 5432:localhost:5432 root@157.230.24.74
+* ssh -L 5432:localhost:5432 root@46.101.174.176
 
 
 
