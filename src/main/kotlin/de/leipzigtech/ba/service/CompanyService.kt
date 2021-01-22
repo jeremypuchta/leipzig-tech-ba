@@ -10,6 +10,12 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import com.google.gson.*
 import kotlin.system.exitProcess
+import java.util.ArrayList
+import com.google.gson.Gson
+
+
+
+
 
 @Service
 class CompanyService(private val comRepository: CompanyRepository) {
@@ -74,6 +80,45 @@ class CompanyService(private val comRepository: CompanyRepository) {
         else ResponseEntity.ok(list)
 
     }
+
+    fun getStats(): ResponseEntity<String>{
+
+        val num_dis = comRepository.countByDistrict()
+        val num_sector = comRepository.countBySector()
+        val num_7days= comRepository.countCompaniesLast7Days()
+        val num_30days= comRepository.countCompaniesLast30Days()
+        //Number of companies
+        val number = comRepository.count()
+
+
+        val sector = JsonObject()
+        val district = JsonObject()
+
+        for (item in num_sector){
+            val parts=item.split(",")
+            sector.addProperty(parts[0],parts[1])
+        }
+        for (item in num_dis){
+
+            val parts=item.split(",")
+            district.addProperty(parts[0],parts[1])
+
+        }
+
+        val json = JsonObject()
+
+        json.addProperty("number",number.toString())
+        json.add("numberBySector",sector)
+        json.add("numberByDistrict",district)
+        json.addProperty("joinedSince7",num_7days[0])
+        json.addProperty("joinedSince30",num_30days[0])
+
+
+        return if(json.toString().isNullOrEmpty()) ResponseEntity.notFound().build()
+        else ResponseEntity.ok(json.toString())
+
+    }
+
     fun getLongLat(com:Company) {
 
         val okHttpClient = OkHttpClient()
