@@ -31,6 +31,7 @@ val snippetsDir by extra { file("build/generated-snippets") }
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation ("com.google.code.gson:gson:2.8.6")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -38,7 +39,6 @@ dependencies {
 	implementation ("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.flywaydb:flyway-core")
 	implementation("com.squareup.okhttp3:okhttp:3.14.6")
-	implementation("org.springframework.boot:spring-boot-starter-oauth2-client:2.4.1")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")

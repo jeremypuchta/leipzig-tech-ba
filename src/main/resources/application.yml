@@ -53,10 +53,6 @@ spring:
               action: create
               create-source: metadata
               create-target: ./src/main/resources/db/migration/create.sql
-<<<<<<< HEAD
-=======
-  main:
-    banner-mode: 'off'
   security:
     oauth2:
       client:
@@ -67,4 +63,6 @@ spring:
             scope:
               - user:email
               - read:user
->>>>>>> 5aa7592 (Add minor refactorings and change application.properties to .yml)
+    user:
+      name: admin
+      password: admin
