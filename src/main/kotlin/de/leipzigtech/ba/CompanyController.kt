@@ -18,6 +18,12 @@ class CompanyController(private val comService: CompanyService) {
     private val comRepository: CompanyRepository? = null
 
     @CrossOrigin
+    @GetMapping("/companies/stats")
+    fun getStatistics(): ResponseEntity<String> {
+
+        return comService.getStats()
+    }
+    @CrossOrigin
     @GetMapping("/companies/ref")
     fun getRef(): ResponseEntity<List<String>> {
 

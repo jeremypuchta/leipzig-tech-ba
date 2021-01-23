@@ -1,5 +1,7 @@
 package de.leipzigtech.ba.service
 
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import de.leipzigtech.ba.model.Company
 import de.leipzigtech.ba.repository.CompanyRepository
 import okhttp3.OkHttpClient
@@ -8,8 +10,7 @@ import org.springframework.data.domain.Sort
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
-import com.google.gson.*
-import kotlin.system.exitProcess
+
 
 @Service
 class CompanyService(private val comRepository: CompanyRepository) {
@@ -74,6 +75,45 @@ class CompanyService(private val comRepository: CompanyRepository) {
         else ResponseEntity.ok(list)
 
     }
+
+    fun getStats(): ResponseEntity<String>{
+
+        val numDis = comRepository.countByDistrict()
+        val numSector = comRepository.countBySector()
+        val num7days= comRepository.countCompaniesLast7Days()
+        val num30days= comRepository.countCompaniesLast30Days()
+        //Number of companies
+        val number = comRepository.count()
+
+
+        val sector = JsonObject()
+        val district = JsonObject()
+
+        for (item in numSector){
+            val parts=item.split(",")
+            sector.addProperty(parts[0],parts[1])
+        }
+        for (item in numDis){
+
+            val parts=item.split(",")
+            district.addProperty(parts[0],parts[1])
+
+        }
+
+        val json = JsonObject()
+
+        json.addProperty("number",number.toString())
+        json.add("numberBySector",sector)
+        json.add("numberByDistrict",district)
+        json.addProperty("joinedSince7",num7days[0])
+        json.addProperty("joinedSince30",num30days[0])
+
+
+        return if(json.toString().isNullOrEmpty()) ResponseEntity.notFound().build()
+        else ResponseEntity.ok(json.toString())
+
+    }
+
     fun getLongLat(com:Company) {
 
         val okHttpClient = OkHttpClient()

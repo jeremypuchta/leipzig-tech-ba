@@ -22,8 +22,13 @@ interface CompanyRepository : JpaRepository<Company, Long> {
     fun getAllRef():List<Company>
     fun findByNameOrderByNameDesc(name: kotlin.String):List<Company>
 
-
-
-
+    @Query("SELECT sector ,COUNT(*) From companies c Group by sector",nativeQuery = true)
+    fun countBySector():List<String>
+    @Query("SELECT district ,COUNT(*) From companies c Group by district",nativeQuery = true)
+    fun countByDistrict():List<String>
+    @Query("SELECT COUNT(*) From companies c Where create_at > current_date - interval '7 days'",nativeQuery = true)
+    fun countCompaniesLast7Days():List<String>
+    @Query("SELECT COUNT(*) From companies c Where create_at > current_date - interval '30 days'",nativeQuery = true)
+    fun countCompaniesLast30Days():List<String>
 
 }
