@@ -1,17 +1,41 @@
 version: '3.7'
 
 services:
+  ba:
+    image: leipzigtechba
+    build:
+      context: .
+      dockerfile: ./dockerized_jar/Dockerfile
+    restart: always
+    depends_on:
+      - db
+    container_name: le_tech_ba
+    networks:
+      leipzig-tech-network:
+        aliases:
+          - ba
+    ports:
+      - 8080:8080
   db:
     image: leipzigtech
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     restart: always
     container_name: le_tech_storage
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+    networks:
+      leipzig-tech-network:
+        aliases:
+          - db
     ports:
       - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=le_tech
       - POSTGRES_DB=le_tech
       - POSTGRES_PASSWORD=ddk0Re!!wIjpGAPzfa.XrQ
+networks:
+  leipzig-tech-network:
 volumes:
   postgres_data:

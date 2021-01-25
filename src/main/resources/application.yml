@@ -1,0 +1,25 @@
+logging:
+  level:
+    org:
+      springframework: ERROR
+spring:
+  datasource:
+    password: ddk0Re!!wIjpGAPzfa.XrQ
+    platform: postgres
+    url: jdbc:postgresql://db:5432/le_tech
+    username: le_tech
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+      javax:
+        persistence:
+          schema-generation:
+            scripts:
+              action: create
+              create-source: metadata
+              create-target: ./src/main/resources/db/migration/create.sql
