@@ -16,37 +16,99 @@ import org.springframework.stereotype.Service
 class CompanyService(private val comRepository: CompanyRepository) {
 
 
-    fun getallCompanies(sort:String,orderBy:String): ResponseEntity<List<Company>> {
+    fun getallCompanies(sort:String,orderBy:String,sector: String,district: String): ResponseEntity<List<Company>> {
+        //Validate Filter-Strings
+        val (sector_list,district_list) =validateFilter(sector,district)
 
-        if (sort == "ASC"){
-
-            val com =comRepository.findAll((Sort.by(Sort.Direction.ASC, orderBy)))
-
-            return if(com.isNullOrEmpty()) ResponseEntity.notFound().build()
-            else ResponseEntity.ok(com)
+        if(district_list.isEmpty() && sector_list.isEmpty()){
+            if(sort =="ASC"){
+                val com =comRepository.findAll((Sort.by(Sort.Direction.ASC, orderBy)))
+                return ResponseEntity.ok(com)
+            }
+            val com =comRepository.findAll((Sort.by(Sort.Direction.DESC, orderBy)))
+            return ResponseEntity.ok(com)
         }
+        if(sector_list.isEmpty()){
+            if(sort =="ASC"){
+                val  com = comRepository.findAllByDistrictInOrderByASC(district_list,orderBy)
+                return ResponseEntity.ok(com)
+            }
+            val  com = comRepository.findAllByDistrictInOrderByDESC(district_list,orderBy)
+            return ResponseEntity.ok(com)
+        }
+        if(district_list.isEmpty()){
+            if(sort =="ASC"){
+                val  com = comRepository.findAllBySectorInASC(sector_list,orderBy)
+                return ResponseEntity.ok(com)
+            }
+            val  com = comRepository.findAllBySectorInDesc(sector_list,orderBy)
+            return ResponseEntity.ok(com)
+        }
+        if(sort =="ASC"){
+            val com =comRepository.findAllByDistrictInAndSectorInOrderByASC(sector_list,district_list,orderBy)
+            return ResponseEntity.ok(com)
+        }
+        val com =comRepository.findAllByDistrictInAndSectorInOrderByDESC(sector_list,district_list,orderBy)
+        return  ResponseEntity.ok(com)
 
-        val com =comRepository.findAll((Sort.by(Sort.Direction.DESC, orderBy)))
-
-        return if(com.isNullOrEmpty()) ResponseEntity.notFound().build()
-        else ResponseEntity.ok(com)
 
     }
 
-    fun getCompaniesbyName_case(name:String, case:Boolean): ResponseEntity<List<Company>> {
+    fun getCompaniesbyName_case(name:String, sector:String, district:String, case:Boolean): ResponseEntity<List<Company>> {
+
+        //Validate Filter-Strings
+        val (sector_list, district_list) = validateFilter(sector, district)
 
 
-        if(case){
-           val  com = comRepository.findByName_fuzzy(name)
-             return if(com.isNullOrEmpty()) ResponseEntity.ok(com)
-             else ResponseEntity.ok(com)
+        if(sector_list.isEmpty() && district_list.isEmpty()) {
+            if (case) {
+                val com = comRepository.findByName(name)
+                return ResponseEntity.ok(com)
+            }
+            val com = comRepository.findByNameAllIgnoreCase(name)
+            return ResponseEntity.ok(com)
+        }
+        if(sector_list.isEmpty()){
+            if(case){
+                val  com = comRepository.findAllByNameContainingAndDistrictIn(name,district_list)
+                return ResponseEntity.ok(com)
+            }
+            val  com = comRepository.findAllByNameContainingIgnoreCaseAndDistrictIn(name,district_list)
+            return ResponseEntity.ok(com)
         }
 
-        val com = comRepository.findByName_case(name)
+        if(district_list.isEmpty()){
+            if(case){
+                val  com = comRepository.findAllByNameContainingAndSectorIn(name,sector_list)
+                return ResponseEntity.ok(com)
+            }
+            val  com = comRepository.findAllByNameContainingIgnoreCaseAndSectorIn(name,sector_list)
+            return ResponseEntity.ok(com)
+        }
+        if(case){
+            val com =comRepository.findByNameSectorInAndDistrictIn(name,sector_list,district_list)
+            return  ResponseEntity.ok(com)
+        }
 
-        return if(com.isNullOrEmpty()) ResponseEntity.ok(com)
-        else ResponseEntity.ok(com)
+        val com =comRepository.findByNameAllIgnoreCaseSectorInAndDistrictIn(name,sector_list,district_list)
+        return  ResponseEntity.ok(com)
 
+
+    }
+    private fun validateFilter(sector: String, district: String): Pair<MutableList<String>, MutableList<String>> {
+
+
+        val sectorList = sector.split(",").toMutableList()
+        val districtList = district.split(",").toMutableList()
+
+        if (sectorList[0] == "") {
+            sectorList.clear()
+        }
+        if (districtList[0] == "") {
+            districtList.clear()
+
+        }
+        return Pair(sectorList, districtList)
     }
 
     fun deleteCompanie(comId: Long): ResponseEntity<Void> =
