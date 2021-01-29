@@ -1,5 +1,6 @@
 leipzig-tech-ba
 ===============
+[![leipzig-tech-ba](https://circleci.com/gh/jeremypuchta/leipzig-tech-ba.svg?style=svg)](https://circleci.com/gh/jeremypuchta/leipzig-tech-ba)
 
 A repository for the backend of leipzigtech.de.
 
