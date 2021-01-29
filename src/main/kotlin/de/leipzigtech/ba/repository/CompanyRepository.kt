@@ -15,7 +15,7 @@ interface CompanyRepository : JpaRepository<Company, Long> {
     fun findByName(@Param("name") name: kotlin.String): List<Company>
 
 
-    @Query("SELECT *,LEVENSHTEIN(name,:name) FROM companies c WHERE c.name like CONCAT('%', :name,'%') ORDER BY LEVENSHTEIN(c.name,:name) ASC ",nativeQuery = true)
+    @Query("SELECT *,LEVENSHTEIN(name,:name) FROM companies c WHERE c.name ILIKE CONCAT('%', :name,'%') ORDER BY LEVENSHTEIN(c.name,:name) ASC ",nativeQuery = true)
     fun findByNameAllIgnoreCase(@Param("name") name: String): List<Company>
 
 
