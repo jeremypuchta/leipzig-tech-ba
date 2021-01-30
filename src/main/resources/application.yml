@@ -1,3 +1,7 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
 logging:
   level:
     org:
@@ -30,13 +34,20 @@ spring:
               create-source: metadata
               create-target: ./src/main/resources/db/migration/create.sql
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8083/auth/realms/baeldung
+          jwk-set-uri: http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/certs
+
 ---
 spring:
   profiles: compose
   datasource:
     password: ddk0Re!!wIjpGAPzfa.XrQ
     platform: postgres
-    url: jdbc:postgresql://db:5432/le_tech
+    url: jdbc:postgresql://localhost:5432/le_tech
     username: le_tech
   jpa:
     generate-ddl: true
@@ -55,14 +66,8 @@ spring:
               create-target: ./src/main/resources/db/migration/create.sql
   security:
     oauth2:
-      client:
-        registration:
-          github:
-            clientId: eb7dcb44c7f08deaf8ef
-            clientSecret: 494afbbf5501379c3880ab0ab86443668c3ecfc2
-            scope:
-              - user:email
-              - read:user
-    user:
-      name: admin
-      password: admin
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8083/auth/realms/baeldung
+          jwk-set-uri: http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/certs
+
