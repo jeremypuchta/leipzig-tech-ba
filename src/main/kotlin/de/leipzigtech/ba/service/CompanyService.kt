@@ -217,6 +217,67 @@ class CompanyService(private val comRepository: CompanyRepository) {
         }else{
             throw Exception()
         }
+    }
 
+    fun setSector(com:Company){
+
+        val hashmap: HashMap<String,String> = HashMap<String,String>()
+
+
+        //noch vervollständigen
+        hashmap.put("medicine","Medicine")
+        hashmap.put("education","Education")
+        hashmap.put("services","Services")
+        hashmap.put("software Engineering","Software Engineering")
+        hashmap.put("consulting","Consulting")
+        hashmap.put("environment","Environment")
+        hashmap.put("engineering","Engineering")
+        hashmap.put("news","News")
+        hashmap.put("legal","Legal")
+        hashmap.put("insurance","Insurance")
+        hashmap.put("accounting","Accounting")
+        hashmap.put("design","Design")
+        hashmap.put("accounting","Accounting")
+        hashmap.put("news","News")
+        hashmap.put("design","Design")
+        hashmap.put("advertising","Advertising")
+        hashmap.put("augenoptik","Medicine")
+        hashmap.put("bildungseinrichtungen ","Education")
+        hashmap.put("bürobedarf","Services")
+        hashmap.put("coaching","Education")
+        hashmap.put("computer","Services")
+        hashmap.put("computer-dienstleistungen","Services")
+        hashmap.put("computerreparaturen ","Services")
+        hashmap.put("detekteien ","Legal")
+        hashmap.put("edv","Software Engineering")
+        hashmap.put("edv-beratungen","Consulting")
+        hashmap.put("edv-dienstleistungen","Software Engineering")
+        hashmap.put("geografische informationssysteme","Environment")
+        hashmap.put("it-beratung","Consulting")
+        hashmap.put("it-beratungen","Consulting")
+        hashmap.put("it-dienstleistungen","Software Engineering")
+        hashmap.put("ingenieurbüros","Engineering")
+        hashmap.put("internetservice","Software Engineering")
+        hashmap.put("nachrichtenagenturen","News")
+        hashmap.put("netzwerke","(Computer) Networking")
+        hashmap.put("notare","Legal")
+        hashmap.put("personalberatung","Human Resources")
+        hashmap.put("personaldienstleistungen","Human Resources")
+        hashmap.put("rechtsanwälte","Legal")
+        hashmap.put("software","Software Engineering")
+        hashmap.put("unternehmensberatung","Consulting")
+        hashmap.put("versicherungen","Insurance")
+        hashmap.put("steuerberatung","Accounting")
+        hashmap.put("webdesign","Design")
+        hashmap.put("werbefotografie","Advertising")
+
+        val oldsector = com.sector.toString().toLowerCase().filter { !it.isWhitespace() }
+        //if null and empty break
+
+        val newsector= hashmap[oldsector]
+        if (newsector.isNullOrEmpty()){
+            throw Exception()
+        }
+        com.sector=newsector
     }
 }

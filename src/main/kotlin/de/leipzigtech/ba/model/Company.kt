@@ -21,7 +21,7 @@ data class Company (
         val ref: String,
         val source: String,
         val name: String,
-        val sector: String,
+        var sector: String,
         val address :String,
         val plz :String,
         val city :String,

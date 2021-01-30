@@ -52,6 +52,7 @@ class CompanyController(private val comService: CompanyService) {
     fun addCompanies(@RequestBody com: Company): ResponseEntity<Company> {
 
         try {
+            comService.setSector(com)
             comService.getLongLat(com)
             comService.getDistrict(com)
         }catch (e:Exception){
