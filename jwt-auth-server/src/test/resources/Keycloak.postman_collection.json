@@ -1,0 +1,746 @@
+{
+    "variables": [],
+    "info": {
+        "name": "Keycloak",
+        "_postman_id": "02eae502-ff40-b9d0-bb2c-fa24dafe430b",
+        "description": "",
+        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "openid-configuration",
+            "request": {
+                "url": "{{server}}/auth/realms/{{realm}}/.well-known/openid-configuration",
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "description": ""
+            },
+            "response": [
+                {
+                    "id": "dfa95e26-d7c5-40d8-84f7-ca66227dea1c",
+                    "name": "openid-configuration",
+                    "originalRequest": {
+                        "url": "{{server}}/auth/realms/{{realm}}/.well-known/openid-configuration",
+                        "method": "GET",
+                        "header": [],
+                        "body": {}
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "_postman_previewtype": "text",
+                    "header": [
+                        {
+                            "name": "cache-control",
+                            "key": "cache-control",
+                            "value": "no-cache, must-revalidate, no-transform, no-store",
+                            "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+                        },
+                        {
+                            "name": "connection",
+                            "key": "connection",
+                            "value": "keep-alive",
+                            "description": "Options that are desired for the connection"
+                        },
+                        {
+                            "name": "content-length",
+                            "key": "content-length",
+                            "value": "2689",
+                            "description": "The length of the response body in octets (8-bit bytes)"
+                        },
+                        {
+                            "name": "content-type",
+                            "key": "content-type",
+                            "value": "application/json",
+                            "description": "The mime type of this content"
+                        },
+                        {
+                            "name": "date",
+                            "key": "date",
+                            "value": "Sat, 03 Oct 2020 15:20:57 GMT",
+                            "description": "The date and time that the message was sent"
+                        },
+                        {
+                            "name": "keep-alive",
+                            "key": "keep-alive",
+                            "value": "timeout=60",
+                            "description": "Custom header"
+                        },
+                        {
+                            "name": "strict-transport-security",
+                            "key": "strict-transport-security",
+                            "value": "max-age=31536000; includeSubDomains",
+                            "description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+                        },
+                        {
+                            "name": "x-content-type-options",
+                            "key": "x-content-type-options",
+                            "value": "nosniff",
+                            "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+                        },
+                        {
+                            "name": "x-frame-options",
+                            "key": "x-frame-options",
+                            "value": "SAMEORIGIN",
+                            "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+                        },
+                        {
+                            "name": "x-xss-protection",
+                            "key": "x-xss-protection",
+                            "value": "1; mode=block",
+                            "description": "Cross-site scripting (XSS) filter"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": 50,
+                    "body": "{\"issuer\":\"http://localhost:8083/auth/realms/baeldung\",\"authorization_endpoint\":\"http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/auth\",\"token_endpoint\":\"http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/token\",\"token_introspection_endpoint\":\"http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/token/introspect\",\"userinfo_endpoint\":\"http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/userinfo\",\"end_session_endpoint\":\"http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/logout\",\"jwks_uri\":\"http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/certs\",\"check_session_iframe\":\"http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/login-status-iframe.html\",\"grant_types_supported\":[\"authorization_code\",\"implicit\",\"refresh_token\",\"password\",\"client_credentials\"],\"response_types_supported\":[\"code\",\"none\",\"id_token\",\"token\",\"id_token token\",\"code id_token\",\"code token\",\"code id_token token\"],\"subject_types_supported\":[\"public\",\"pairwise\"],\"id_token_signing_alg_values_supported\":[\"PS384\",\"ES384\",\"RS384\",\"HS256\",\"HS512\",\"ES256\",\"RS256\",\"HS384\",\"ES512\",\"PS256\",\"PS512\",\"RS512\"],\"id_token_encryption_alg_values_supported\":[\"RSA-OAEP\",\"RSA1_5\"],\"id_token_encryption_enc_values_supported\":[\"A128GCM\",\"A128CBC-HS256\"],\"userinfo_signing_alg_values_supported\":[\"PS384\",\"ES384\",\"RS384\",\"HS256\",\"HS512\",\"ES256\",\"RS256\",\"HS384\",\"ES512\",\"PS256\",\"PS512\",\"RS512\",\"none\"],\"request_object_signing_alg_values_supported\":[\"PS384\",\"ES384\",\"RS384\",\"HS256\",\"HS512\",\"ES256\",\"RS256\",\"HS384\",\"ES512\",\"PS256\",\"PS512\",\"RS512\",\"none\"],\"response_modes_supported\":[\"query\",\"fragment\",\"form_post\"],\"registration_endpoint\":\"http://localhost:8083/auth/realms/baeldung/clients-registrations/openid-connect\",\"token_endpoint_auth_methods_supported\":[\"private_key_jwt\",\"client_secret_basic\",\"client_secret_post\",\"tls_client_auth\",\"client_secret_jwt\"],\"token_endpoint_auth_signing_alg_values_supported\":[\"PS384\",\"ES384\",\"RS384\",\"HS256\",\"HS512\",\"ES256\",\"RS256\",\"HS384\",\"ES512\",\"PS256\",\"PS512\",\"RS512\"],\"claims_supported\":[\"aud\",\"sub\",\"iss\",\"auth_time\",\"name\",\"given_name\",\"family_name\",\"preferred_username\",\"email\",\"acr\"],\"claim_types_supported\":[\"normal\"],\"claims_parameter_supported\":false,\"scopes_supported\":[\"openid\",\"address\",\"email\",\"microprofile-jwt\",\"offline_access\",\"phone\",\"profile\",\"read\",\"roles\",\"web-origins\",\"write\"],\"request_parameter_supported\":true,\"request_uri_parameter_supported\":true,\"code_challenge_methods_supported\":[\"plain\",\"S256\"],\"tls_client_certificate_bound_access_tokens\":true,\"introspection_endpoint\":\"http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/token/introspect\"}"
+                }
+            ]
+        },
+        {
+            "name": "jwk-keys",
+            "request": {
+                "url": "{{server}}/auth/realms/{{realm}}/protocol/openid-connect/certs",
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "description": ""
+            },
+            "response": []
+        },
+        {
+            "name": "token_from_authorize_code",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "var jsonData = JSON.parse(responseBody);",
+                            "postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);",
+                            "postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "url": "{{server}}/auth/realms/{{realm}}/protocol/openid-connect/token",
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded",
+                        "description": ""
+                    }
+                ],
+                "body": {
+                    "mode": "urlencoded",
+                    "urlencoded": [
+                        {
+                            "key": "code",
+                            "value": "53cd72f7-3b6f-47eb-b75a-338775e9dbb8.7c34ef35-5ef8-4542-89ea-da4f91a67421.b88ce206-63d6-43b6-87c9-ea09d8c02f32",
+                            "type": "text",
+                            "description": ""
+                        },
+                        {
+                            "key": "client_id",
+                            "value": "{{jwtClient}}",
+                            "type": "text",
+                            "description": ""
+                        },
+                        {
+                            "key": "client_secret",
+                            "value": "{{jwtClientSecret}}",
+                            "type": "text",
+                            "description": ""
+                        },
+                        {
+                            "key": "redirect_uri",
+                            "value": "{{redirect}}",
+                            "type": "text",
+                            "description": ""
+                        },
+                        {
+                            "key": "grant_type",
+                            "value": "authorization_code",
+                            "type": "text",
+                            "description": ""
+                        }
+                    ]
+                },
+                "description": ""
+            },
+            "response": []
+        },
+        {
+            "name": "token_from_refresh_token",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "var jsonData = JSON.parse(responseBody);",
+                            "postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);",
+                            "postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "url": "{{server}}/auth/realms/{{realm}}/protocol/openid-connect/token",
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded",
+                        "description": ""
+                    }
+                ],
+                "body": {
+                    "mode": "urlencoded",
+                    "urlencoded": [
+                        {
+                            "key": "refresh_token",
+                            "value": "{{refresh_token}}",
+                            "type": "text",
+                            "description": ""
+                        },
+                        {
+                            "key": "client_id",
+                            "value": "{{jwtClient}}",
+                            "type": "text",
+                            "description": ""
+                        },
+                        {
+                            "key": "client_secret",
+                            "value": "{{jwtClientSecret}}",
+                            "type": "text",
+                            "description": ""
+                        },
+                        {
+                            "key": "grant_type",
+                            "value": "refresh_token",
+                            "type": "text",
+                            "description": ""
+                        }
+                    ]
+                },
+                "description": ""
+            },
+            "response": []
+        },
+        {
+            "name": "token_from_implicit_password",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "var jsonData = JSON.parse(responseBody);",
+                            "postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);",
+                            "postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "url": "{{server}}/auth/realms/{{realm}}/protocol/openid-connect/token",
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded",
+                        "description": ""
+                    }
+                ],
+                "body": {
+                    "mode": "urlencoded",
+                    "urlencoded": [
+                        {
+                            "key": "username",
+                            "value": "{{test_user}}",
+                            "type": "text",
+                            "description": ""
+                        },
+                        {
+                            "key": "password",
+                            "value": "{{test_password}}",
+                            "type": "text",
+                            "description": ""
+                        },
+                        {
+                            "key": "client_id",
+                            "value": "jwtClient",
+                            "type": "text",
+                            "description": ""
+                        },
+                        {
+                            "key": "client_secret",
+                            "value": "jwtClientSecret",
+                            "type": "text",
+                            "description": ""
+                        },
+                        {
+                            "key": "grant_type",
+                            "value": "password",
+                            "type": "text",
+                            "description": ""
+                        },
+                        {
+                            "key": "scope",
+                            "value": "read profile",
+                            "type": "text",
+                            "description": ""
+                        }
+                    ]
+                },
+                "description": ""
+            },
+            "response": [
+                {
+                    "id": "c3347e45-3528-4413-a171-14a681b11d68",
+                    "name": "token_from_implicit_password",
+                    "originalRequest": {
+                        "url": "{{server}}/auth/realms/{{realm}}/protocol/openid-connect/token",
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "username",
+                                    "value": "{{test_user}}",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "{{test_password}}",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "client_id",
+                                    "value": "{{jwtClient}}",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "client_secret",
+                                    "value": "{{jwtClientSecret}}",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "grant_type",
+                                    "value": "password",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "scope",
+                                    "value": "read email",
+                                    "type": "text",
+                                    "description": ""
+                                }
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "_postman_previewtype": "text",
+                    "header": [
+                        {
+                            "name": "cache-control",
+                            "key": "cache-control",
+                            "value": "no-store",
+                            "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+                        },
+                        {
+                            "name": "connection",
+                            "key": "connection",
+                            "value": "keep-alive",
+                            "description": "Options that are desired for the connection"
+                        },
+                        {
+                            "name": "content-length",
+                            "key": "content-length",
+                            "value": "1815",
+                            "description": "The length of the response body in octets (8-bit bytes)"
+                        },
+                        {
+                            "name": "content-type",
+                            "key": "content-type",
+                            "value": "application/json",
+                            "description": "The mime type of this content"
+                        },
+                        {
+                            "name": "date",
+                            "key": "date",
+                            "value": "Sun, 04 Oct 2020 13:26:03 GMT",
+                            "description": "The date and time that the message was sent"
+                        },
+                        {
+                            "name": "keep-alive",
+                            "key": "keep-alive",
+                            "value": "timeout=60",
+                            "description": "Custom header"
+                        },
+                        {
+                            "name": "pragma",
+                            "key": "pragma",
+                            "value": "no-cache",
+                            "description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+                        },
+                        {
+                            "name": "strict-transport-security",
+                            "key": "strict-transport-security",
+                            "value": "max-age=31536000; includeSubDomains",
+                            "description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+                        },
+                        {
+                            "name": "x-content-type-options",
+                            "key": "x-content-type-options",
+                            "value": "nosniff",
+                            "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+                        },
+                        {
+                            "name": "x-frame-options",
+                            "key": "x-frame-options",
+                            "value": "SAMEORIGIN",
+                            "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+                        },
+                        {
+                            "name": "x-xss-protection",
+                            "key": "x-xss-protection",
+                            "value": "1; mode=block",
+                            "description": "Cross-site scripting (XSS) filter"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": 1152,
+                    "body": "{\"access_token\":\"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJfYjc4WDMwTzM0M2pzM1FaY3ZDSlNTSGE0elVLUG1JQmNoUW1IY05wQlVNIn0.eyJleHAiOjE2MDE4MTgyNjMsImlhdCI6MTYwMTgxNzk2MywianRpIjoiODFhMWZiMGYtM2U4My00NDIxLWE3Y2ItNmQzMWE1YTc5MDhlIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgzL2F1dGgvcmVhbG1zL2JhZWxkdW5nIiwic3ViIjoiYTU0NjE0NzAtMzNlYi00YjJkLTgyZDQtYjA0ODRlOTZhZDdmIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiand0Q2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6IjNlMDM0YzMwLWQwMjItNGU1Yi04NjU3LTU3OGE1NDMyZjYzMiIsImFjciI6IjEiLCJzY29wZSI6InByb2ZpbGUgZW1haWwgcmVhZCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiRE9CIjoiMTk4NC0wNy0wMSIsIm9yZ2FuaXphdGlvbiI6ImJhZWxkdW5nIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiam9obkB0ZXN0LmNvbSJ9.UGk8du-6Sl1wlOjBGAuX8WL_Ji6yCvBgV6VJEgL_HZrIwjA0NlDmjwk7Sza_wDA5wXllqQmlqLOvZ-UiqNo3kHpPJVT1PyhlWeWhtqXRn56aCCK-PnpEqgmEHi8oSulPOuMIGz5I5ldk28le716JDp5UKfmIIBxocQbr_PmYnI1cSxUDOzmIx_foQE38qZcaF4ExLBxMT86kSvlWXLfJFISSlkncczA6P5PvZ9Suo15TgUEgyDtYqA2QqayTldiHAze1xPKV6rwmgXYnTsZCCVvHHnEKt7ZnUiTvvAPWB4WiCIyptico3sXiM685r1KZpeJzUyHYxUcd-pp4qwEzxg\",\"expires_in\":300,\"refresh_expires_in\":1800,\"refresh_token\":\"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIwZDkwY2JkNy03MTY0LTQyY2MtODhlMi1kMjE1ZTc5YWU4ZWEifQ.eyJleHAiOjE2MDE4MTk3NjMsImlhdCI6MTYwMTgxNzk2MywianRpIjoiMmVhZmY3YmQtOWRjYy00ODRhLWExZGYtNzM3MWVhNTNjYjNkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgzL2F1dGgvcmVhbG1zL2JhZWxkdW5nIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgzL2F1dGgvcmVhbG1zL2JhZWxkdW5nIiwic3ViIjoiYTU0NjE0NzAtMzNlYi00YjJkLTgyZDQtYjA0ODRlOTZhZDdmIiwidHlwIjoiUmVmcmVzaCIsImF6cCI6Imp3dENsaWVudCIsInNlc3Npb25fc3RhdGUiOiIzZTAzNGMzMC1kMDIyLTRlNWItODY1Ny01NzhhNTQzMmY2MzIiLCJzY29wZSI6InByb2ZpbGUgZW1haWwgcmVhZCJ9.olITyrwnrhqhe-wTJCBEFwvMvJ6FCiuy_eBOerghwUM\",\"token_type\":\"bearer\",\"not-before-policy\":0,\"session_state\":\"3e034c30-d022-4e5b-8657-578a5432f632\",\"scope\":\"profile email read\"}"
+                }
+            ]
+        },
+        {
+            "name": "user-profile",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "var jsonData = JSON.parse(responseBody);",
+                            "postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);",
+                            "postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "url": "{{server}}/auth/realms/{{realm}}/protocol/openid-connect/userinfo",
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded",
+                        "description": ""
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{access_token}}",
+                        "description": ""
+                    }
+                ],
+                "body": {},
+                "description": ""
+            },
+            "response": [
+                {
+                    "id": "9c20d311-5d65-483c-a567-025166e4cf6d",
+                    "name": "user-profile",
+                    "originalRequest": {
+                        "url": "{{server}}/auth/realms/{{realm}}/protocol/openid-connect/userinfo",
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded",
+                                "description": "",
+                                "warning": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}",
+                                "description": "",
+                                "warning": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "username",
+                                    "value": "{{test_user}}",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "{{test_password}}",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "client_id",
+                                    "value": "jwtClient",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "client_secret",
+                                    "value": "jwtClientSecret",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "grant_type",
+                                    "value": "password",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "scope",
+                                    "value": "read profile",
+                                    "type": "text",
+                                    "description": ""
+                                }
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "_postman_previewtype": "text",
+                    "header": [
+                        {
+                            "name": "cache-control",
+                            "key": "cache-control",
+                            "value": "no-cache",
+                            "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+                        },
+                        {
+                            "name": "connection",
+                            "key": "connection",
+                            "value": "keep-alive",
+                            "description": "Options that are desired for the connection"
+                        },
+                        {
+                            "name": "content-length",
+                            "key": "content-length",
+                            "value": "151",
+                            "description": "The length of the response body in octets (8-bit bytes)"
+                        },
+                        {
+                            "name": "content-type",
+                            "key": "content-type",
+                            "value": "application/json",
+                            "description": "The mime type of this content"
+                        },
+                        {
+                            "name": "date",
+                            "key": "date",
+                            "value": "Sun, 04 Oct 2020 13:28:38 GMT",
+                            "description": "The date and time that the message was sent"
+                        },
+                        {
+                            "name": "keep-alive",
+                            "key": "keep-alive",
+                            "value": "timeout=60",
+                            "description": "Custom header"
+                        },
+                        {
+                            "name": "strict-transport-security",
+                            "key": "strict-transport-security",
+                            "value": "max-age=31536000; includeSubDomains",
+                            "description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+                        },
+                        {
+                            "name": "x-content-type-options",
+                            "key": "x-content-type-options",
+                            "value": "nosniff",
+                            "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+                        },
+                        {
+                            "name": "x-frame-options",
+                            "key": "x-frame-options",
+                            "value": "SAMEORIGIN",
+                            "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+                        },
+                        {
+                            "name": "x-xss-protection",
+                            "key": "x-xss-protection",
+                            "value": "1; mode=block",
+                            "description": "Cross-site scripting (XSS) filter"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": 109,
+                    "body": "{\"sub\":\"a5461470-33eb-4b2d-82d4-b0484e96ad7f\",\"email_verified\":false,\"preferred_username\":\"john@test.com\",\"DOB\":\"1984-07-01\",\"organization\":\"baeldung\"}"
+                }
+            ]
+        },
+        {
+            "name": "introspect",
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "var plainText = postman.getEnvironmentVariable('bareClient') + \":\" + postman.getEnvironmentVariable('bareClientSecret');",
+                            "postman.setEnvironmentVariable(\"base64Basic\", CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(plainText)));"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "url": "{{server}}/auth/realms/{{realm}}/protocol/openid-connect/token/introspect",
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded",
+                        "description": ""
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Basic {{base64Basic}}",
+                        "description": ""
+                    }
+                ],
+                "body": {
+                    "mode": "urlencoded",
+                    "urlencoded": [
+                        {
+                            "key": "token",
+                            "value": "{{access_token}}",
+                            "type": "text",
+                            "description": ""
+                        }
+                    ]
+                },
+                "description": ""
+            },
+            "response": [
+                {
+                    "id": "21f5144a-ad9d-4b98-8573-8234b1a88bc8",
+                    "name": "introspect",
+                    "originalRequest": {
+                        "url": "{{server}}/auth/realms/{{realm}}/protocol/openid-connect/token/introspect",
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded",
+                                "description": "",
+                                "warning": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {{base64Basic}}",
+                                "description": "",
+                                "warning": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "token",
+                                    "value": "{{access_token}}",
+                                    "type": "text",
+                                    "description": ""
+                                }
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "_postman_previewtype": "text",
+                    "header": [
+                        {
+                            "name": "connection",
+                            "key": "connection",
+                            "value": "keep-alive",
+                            "description": "Options that are desired for the connection"
+                        },
+                        {
+                            "name": "content-length",
+                            "key": "content-length",
+                            "value": "473",
+                            "description": "The length of the response body in octets (8-bit bytes)"
+                        },
+                        {
+                            "name": "content-type",
+                            "key": "content-type",
+                            "value": "application/json",
+                            "description": "The mime type of this content"
+                        },
+                        {
+                            "name": "date",
+                            "key": "date",
+                            "value": "Sun, 04 Oct 2020 13:29:10 GMT",
+                            "description": "The date and time that the message was sent"
+                        },
+                        {
+                            "name": "keep-alive",
+                            "key": "keep-alive",
+                            "value": "timeout=60",
+                            "description": "Custom header"
+                        },
+                        {
+                            "name": "strict-transport-security",
+                            "key": "strict-transport-security",
+                            "value": "max-age=31536000; includeSubDomains",
+                            "description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+                        },
+                        {
+                            "name": "x-content-type-options",
+                            "key": "x-content-type-options",
+                            "value": "nosniff",
+                            "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+                        },
+                        {
+                            "name": "x-frame-options",
+                            "key": "x-frame-options",
+                            "value": "SAMEORIGIN",
+                            "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+                        },
+                        {
+                            "name": "x-xss-protection",
+                            "key": "x-xss-protection",
+                            "value": "1; mode=block",
+                            "description": "Cross-site scripting (XSS) filter"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": 39,
+                    "body": "{\"exp\":1601818446,\"iat\":1601818146,\"jti\":\"b6dfa36f-d008-4a0c-9dda-ce408d199919\",\"iss\":\"http://localhost:8083/auth/realms/baeldung\",\"sub\":\"a5461470-33eb-4b2d-82d4-b0484e96ad7f\",\"typ\":\"Bearer\",\"azp\":\"jwtClient\",\"session_state\":\"c18f6d6c-2989-406f-97bc-b4be5463652c\",\"preferred_username\":\"john@test.com\",\"email_verified\":false,\"acr\":\"1\",\"scope\":\"profile email read\",\"DOB\":\"1984-07-01\",\"organization\":\"baeldung\",\"client_id\":\"jwtClient\",\"username\":\"john@test.com\",\"active\":true}"
+                }
+            ]
+        }
+    ]
+}
