@@ -18,10 +18,12 @@ class CompanyService(private val comRepository: CompanyRepository) {
 
     fun getallCompanies(sort:String,orderBy:String,sector: String,district: String): ResponseEntity<List<Company>> {
         //Validate Filter-Strings
-        val (sector_list,district_list) =validateFilter(sector,district)
+        val (sector_list,district_list) =validateFilter(sector.toLowerCase(),district.toLowerCase())
+
+        //orderBy function are not supported yet
 
         if(district_list.isEmpty() && sector_list.isEmpty()){
-            if(sort =="ASC"){
+            if(sort != "asc"){
                 val com =comRepository.findAll((Sort.by(Sort.Direction.ASC, orderBy)))
                 return ResponseEntity.ok(com)
             }
@@ -29,26 +31,26 @@ class CompanyService(private val comRepository: CompanyRepository) {
             return ResponseEntity.ok(com)
         }
         if(sector_list.isEmpty()){
-            if(sort =="ASC"){
-                val  com = comRepository.findAllByDistrictInOrderByASC(district_list,orderBy)
+            if(sort != "asc"){
+                val  com = comRepository.findAllByDistrictInOrderByASC(district_list)
                 return ResponseEntity.ok(com)
             }
-            val  com = comRepository.findAllByDistrictInOrderByDESC(district_list,orderBy)
+            val  com = comRepository.findAllByDistrictInOrderByDESC(district_list)
             return ResponseEntity.ok(com)
         }
         if(district_list.isEmpty()){
-            if(sort =="ASC"){
-                val  com = comRepository.findAllBySectorInASC(sector_list,orderBy)
+            if(sort == "asc"){
+                val  com = comRepository.findAllBySectorInASC(sector_list)
                 return ResponseEntity.ok(com)
             }
-            val  com = comRepository.findAllBySectorInDesc(sector_list,orderBy)
+            val  com = comRepository.findAllBySectorInDesc(sector_list)
             return ResponseEntity.ok(com)
         }
-        if(sort =="ASC"){
-            val com =comRepository.findAllByDistrictInAndSectorInOrderByASC(sector_list,district_list,orderBy)
+        if(sort != "asc"){
+            val com =comRepository.findAllByDistrictInAndSectorInOrderByASC(sector_list,district_list)
             return ResponseEntity.ok(com)
         }
-        val com =comRepository.findAllByDistrictInAndSectorInOrderByDESC(sector_list,district_list,orderBy)
+        val com =comRepository.findAllByDistrictInAndSectorInOrderByDESC(sector_list,district_list)
         return  ResponseEntity.ok(com)
 
 
@@ -57,7 +59,7 @@ class CompanyService(private val comRepository: CompanyRepository) {
     fun getCompaniesbyName_case(name:String, sector:String, district:String, case:Boolean): ResponseEntity<List<Company>> {
 
         //Validate Filter-Strings
-        val (sector_list, district_list) = validateFilter(sector, district)
+        val (sector_list,district_list) =validateFilter(sector.toLowerCase(),district.toLowerCase())
 
 
         if(sector_list.isEmpty() && district_list.isEmpty()) {

@@ -37,12 +37,12 @@ class CompanyController(private val comService: CompanyService) {
     }
     @CrossOrigin
     @GetMapping("/companies")
-    fun getCompanies(@RequestParam(value="name",required = false) name: String?,@RequestParam(value="case",required = false,defaultValue = "false")case:Boolean,@RequestParam(value= "orderBy",required = false,defaultValue = "name") orderBy: String,@RequestParam(value="sort",required = false,defaultValue = "ASC")sort:String,@RequestParam(value="sector",required = false,defaultValue = "")sector:String,@RequestParam(value="district",required = false,defaultValue = "")district:String): ResponseEntity<List<Company>> {
+    fun getCompanies(@RequestParam(value="name",required = false) name: String?,@RequestParam(value="case",required = false,defaultValue = "false")case:Boolean,@RequestParam(value= "orderBy",required = false,defaultValue = "name") orderBy: String,@RequestParam(value="sort",required = false,defaultValue = "asc")sort:String,@RequestParam(value="sector",required = false,defaultValue = "")sector:String,@RequestParam(value="district",required = false,defaultValue = "")district:String): ResponseEntity<List<Company>> {
 
         if (name != null) {
             if(!name.isBlank()) return name.let { comService.getCompaniesbyName_case(it,sector,district,case) }
         }
-        return  comService.getallCompanies(sort,orderBy,sector,district)
+        return  comService.getallCompanies(sort.toLowerCase(),orderBy,sector,district)
 
 
 
