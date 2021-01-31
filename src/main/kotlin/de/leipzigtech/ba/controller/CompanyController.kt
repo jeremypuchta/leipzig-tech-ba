@@ -1,4 +1,4 @@
-package de.leipzigtech.ba
+package de.leipzigtech.ba.controller
 
 import de.leipzigtech.ba.model.Company
 import de.leipzigtech.ba.repository.CompanyRepository

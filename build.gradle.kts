@@ -31,6 +31,8 @@ val snippetsDir by extra { file("build/generated-snippets") }
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.security.oauth:spring-security-oauth2:2.3.5.RELEASE")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation ("com.google.code.gson:gson:2.8.6")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
