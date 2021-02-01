@@ -47,7 +47,7 @@ spring:
   datasource:
     password: ddk0Re!!wIjpGAPzfa.XrQ
     platform: postgres
-    url: jdbc:postgresql://localhost:5432/le_tech
+    url: jdbc:postgresql://db:5432/le_tech
     username: le_tech
   jpa:
     generate-ddl: true

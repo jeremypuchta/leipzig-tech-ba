@@ -230,7 +230,7 @@ class CompanyService(private val comRepository: CompanyRepository) {
         hashmap.put("medicine","Medicine")
         hashmap.put("education","Education")
         hashmap.put("services","Services")
-        hashmap.put("software Engineering","Software Engineering")
+        hashmap.put("softwareengineering","Software Engineering")
         hashmap.put("consulting","Consulting")
         hashmap.put("environment","Environment")
         hashmap.put("engineering","Engineering")
@@ -243,18 +243,22 @@ class CompanyService(private val comRepository: CompanyRepository) {
         hashmap.put("news","News")
         hashmap.put("design","Design")
         hashmap.put("advertising","Advertising")
+        hashmap.put("medizin","Medicine")
+        hashmap.put("medizin","Medicine")
         hashmap.put("augenoptik","Medicine")
-        hashmap.put("bildungseinrichtungen ","Education")
+        hashmap.put("startup","Startup")
+        hashmap.put("bildungseinrichtung","Education")
+        hashmap.put("bildungseinrichtungen","Education")
         hashmap.put("bürobedarf","Services")
         hashmap.put("coaching","Education")
         hashmap.put("computer","Services")
         hashmap.put("computer-dienstleistungen","Services")
-        hashmap.put("computerreparaturen ","Services")
-        hashmap.put("detekteien ","Legal")
+        hashmap.put("detekteien","Legal")
         hashmap.put("edv","Software Engineering")
         hashmap.put("edv-beratungen","Consulting")
+        hashmap.put("edv-beratung","Consulting")
         hashmap.put("edv-dienstleistungen","Software Engineering")
-        hashmap.put("geografische informationssysteme","Environment")
+        hashmap.put("geografischeinformationssysteme","Environment")
         hashmap.put("it-beratung","Consulting")
         hashmap.put("it-beratungen","Consulting")
         hashmap.put("it-dienstleistungen","Software Engineering")
@@ -272,12 +276,17 @@ class CompanyService(private val comRepository: CompanyRepository) {
         hashmap.put("steuerberatung","Accounting")
         hashmap.put("webdesign","Design")
         hashmap.put("werbefotografie","Advertising")
+        hashmap.put("baustoffe","Construction Industry")
+        hashmap.put("baustoff","Construction Industry")
+        hashmap.put("alarmanlagen","Security")
+        hashmap.put("computerreparaturen","Services")
 
         val oldsector = com.sector.toString().toLowerCase().filter { !it.isWhitespace() }
         //if null and empty break
 
         val newsector= hashmap[oldsector]
         if (newsector.isNullOrEmpty()){
+
             throw Exception()
         }
         com.sector=newsector
