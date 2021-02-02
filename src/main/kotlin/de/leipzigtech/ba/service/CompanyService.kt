@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
+import java.security.MessageDigest
 
 
 @Service
@@ -290,5 +291,13 @@ class CompanyService(private val comRepository: CompanyRepository) {
             throw Exception()
         }
         com.sector=newsector
+    }
+
+    fun setRef(com:Company){
+        val stringToHash = String.format("%s%s%s%s", com.name, com.address, com.city, com.plz)
+        val digest: MessageDigest = MessageDigest.getInstance("SHA3-256")
+        val hashBytes: ByteArray = digest.digest(stringToHash.toByteArray())
+        val sha3Hex: String = hashBytes.joinToString("") { "%02x".format(it) }
+        com.ref = sha3Hex
     }
 }

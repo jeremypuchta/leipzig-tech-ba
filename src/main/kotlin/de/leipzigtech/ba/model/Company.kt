@@ -18,7 +18,7 @@ data class Company (
         val id: Long? = null,
         @NotNull
         @Column(unique = true)
-        val ref: String,
+        var ref: String,
         val source: String,
         val name: String,
         var sector: String,

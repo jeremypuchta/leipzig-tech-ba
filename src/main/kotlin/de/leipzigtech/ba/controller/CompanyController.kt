@@ -63,6 +63,22 @@ class CompanyController(private val comService: CompanyService) {
         return comService.addCompanies(com)
     }
 
+    @CrossOrigin
+    @PostMapping("/auth/companies")
+    fun addCompaniesFromUser(@RequestBody com: Company): ResponseEntity<Company> {
+
+        try {
+            comService.setRef(com)
+            comService.setSector(com)
+            comService.getLongLat(com)
+            comService.getDistrict(com)
+        }catch (e:Exception){
+
+            return ResponseEntity.badRequest().build()
+        }
+
+        return comService.addCompanies(com)
+    }
     /*
     @PutMapping("/{id}")
     fun updateCompanieById(

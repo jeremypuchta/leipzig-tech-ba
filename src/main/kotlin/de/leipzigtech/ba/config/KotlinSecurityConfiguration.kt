@@ -14,6 +14,7 @@ class KotlinSecurityConfiguration : WebSecurityConfigurerAdapter() {
         http {
             cors {  }
             authorizeRequests {
+                authorize(AntPathRequestMatcher("/auth/companies", HttpMethod.POST.name), hasRole("user"))
                 authorize(AntPathRequestMatcher("/companies", HttpMethod.POST.name), permitAll)
                 authorize(AntPathRequestMatcher("/companies/**", HttpMethod.GET.name), permitAll) //hasAuthority("SCOPE_write")
                 authorize(AntPathRequestMatcher("/login/**", HttpMethod.POST.name), permitAll)
